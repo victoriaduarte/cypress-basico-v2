@@ -123,4 +123,13 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
                     .should('be.checked')
             })
     })
+
+    it('check both checkboxes, then uncheck the last one', function () {
+        cy.get('input[type="checkbox"]')
+            .check()
+            .should('be.checked')
+            .last()
+            .uncheck()
+            .should('not.be.checked')
+    })
 })
