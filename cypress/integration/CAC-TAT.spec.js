@@ -36,7 +36,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.get('#phone').type('test').should('have.value', '')
     })
 
-    it.only('displays an error message when the telephone number becomes required but is not filled in before submitting the form', function () {
+    it('displays an error message when the telephone number becomes required but is not filled in before submitting the form', function () {
         cy.get('#firstName').type('Victoria')
         cy.get('#lastName').type('Duarte')
         cy.get('#email').type('victoria@example.com')
@@ -45,5 +45,37 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.get('button[type="submit"]').click()
 
         cy.get('.error').should('be.visible')
+    })
+
+    it.only('fill out and clear the name, surname, email and telephone fields', function () {
+        cy.get('#firstName')
+            .type('Victoria')
+            .should('have.value', 'Victoria')
+            .clear()
+            .should('have.value', '')
+
+        cy.get('#lastName')
+            .type('Duarte')
+            .should('have.value', 'Duarte')
+            .clear()
+            .should('have.value', '')
+
+        cy.get('#email')
+            .type('victoria@example.com')
+            .should('have.value', 'victoria@example.com')
+            .clear()
+            .should('have.value', '')
+
+        cy.get('#phone')
+            .type('48999999999')
+            .should('have.value', '48999999999')
+            .clear()
+            .should('have.value', '')
+
+        cy.get('#open-text-area')
+            .type('test')
+            .should('have.value', 'test')
+            .clear()
+            .should('have.value', '')
     })
 })
