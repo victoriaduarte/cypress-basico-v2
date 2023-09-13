@@ -93,25 +93,25 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
 
     it('select a product (YouTube) by its text', function () {
         cy.get('#product')
-        .select('YouTube')
-        .should('have.value','youtube')
+            .select('YouTube')
+            .should('have.value', 'youtube')
     })
 
     it('select a product (Mentoria) by its value', function () {
         cy.get('#product')
-        .select('mentoria')
-        .should('have.value','mentoria')
+            .select('mentoria')
+            .should('have.value', 'mentoria')
     })
-    
+
     it('select a product (Blog) by its index', function () {
         cy.get('#product')
-        .select(1)
-        .should('have.value','blog')
+            .select(1)
+            .should('have.value', 'blog')
     })
 
     it('mark the type of service "Feedback"', function () {
         cy.get('input[type="radio"][value="feedback"]')
-        .check()
-        .should('be.checked')
+            .check()
+            .should('be.checked')
     })
 })
