@@ -40,7 +40,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.get('#firstName').type('Victoria')
         cy.get('#lastName').type('Duarte')
         cy.get('#email').type('victoria@example.com')
-        cy.get('#phone-checkbox').click()
+        cy.get('#phone-checkbox').check()
         cy.get('#open-text-area').type('test')
         cy.contains('button', 'Enviar').click()
 
