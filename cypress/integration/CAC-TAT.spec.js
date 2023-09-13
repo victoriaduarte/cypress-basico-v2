@@ -21,5 +21,15 @@ describe('Central de Atendimento ao Cliente TAT', function() {  /* Test suite */
 
         cy.get('.success').should('be.visible')
         })
+
+    it('display an error message when submitting the form with an email with invalid format', function() {
+        cy.get('#firstName').type('Victoria')
+        cy.get('#lastName').type('Duarte')
+        cy.get('#email').type('victoria.example.com')
+        cy.get('#open-text-area').type('test')
+        cy.get('button[type="submit"]').click()
+
+        cy.get('.error > strong').should('be.visible')
+        })
   })
   
