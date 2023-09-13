@@ -47,7 +47,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.get('.error').should('be.visible')
     })
 
-    it.only('fill out and clear the name, surname, email and telephone fields', function () {
+    it('fill out and clear the name, surname, email and telephone fields', function () {
         cy.get('#firstName')
             .type('Victoria')
             .should('have.value', 'Victoria')
@@ -77,5 +77,11 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
             .should('have.value', 'test')
             .clear()
             .should('have.value', '')
+    })
+
+    it('displays an error message when submitting the form without filling out the required fields', function () {
+        cy.get('button[type="submit"]').click()
+
+        cy.get('.error').should('be.visible')
     })
 })
