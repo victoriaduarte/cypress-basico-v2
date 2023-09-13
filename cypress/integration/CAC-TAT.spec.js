@@ -102,4 +102,10 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         .select('mentoria')
         .should('have.value','mentoria')
     })
+    
+    it('select a product (Blog) by its index', function () {
+        cy.get('#product')
+        .select(1)
+        .should('have.value','blog')
+    })
 })
