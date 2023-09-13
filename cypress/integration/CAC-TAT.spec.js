@@ -17,7 +17,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.get('#lastName').type('Duarte')
         cy.get('#email').type('victoria@example.com')
         cy.get('#open-text-area').type(longText, { delay: 0 })  /* enter the text immediately (no delay in typing) */
-        cy.get('button[type="submit"]').click()
+        cy.contains('button', 'Enviar').click()
 
         cy.get('.success').should('be.visible')
     })
@@ -27,7 +27,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.get('#lastName').type('Duarte')
         cy.get('#email').type('victoria.example.com')
         cy.get('#open-text-area').type('test')
-        cy.get('button[type="submit"]').click()
+        cy.contains('button', 'Enviar').click()
 
         cy.get('.error').should('be.visible')
     })
@@ -42,7 +42,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.get('#email').type('victoria@example.com')
         cy.get('#phone-checkbox').click()
         cy.get('#open-text-area').type('test')
-        cy.get('button[type="submit"]').click()
+        cy.contains('button', 'Enviar').click()
 
         cy.get('.error').should('be.visible')
     })
@@ -80,12 +80,12 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
     })
 
     it('displays an error message when submitting the form without filling out the required fields', function () {
-        cy.get('button[type="submit"]').click()
+        cy.contains('button', 'Enviar').click()
 
         cy.get('.error').should('be.visible')
     })
 
-    it.only('successfully submits the form using a custom command', function () {
+    it('successfully submits the form using a custom command', function () {
         cy.fillMandatoryFieldsAndSubmit()
 
         cy.get('.success').should('be.visible')
