@@ -31,5 +31,9 @@ describe('Central de Atendimento ao Cliente TAT', function() {  /* Test suite */
 
         cy.get('.error').should('be.visible')
         })
+
+    it.only('phone field remains empty when filled with a non-numeric value', function() {
+        cy.get('#phone').type('test').should('have.value','')
+        })
   })
   
