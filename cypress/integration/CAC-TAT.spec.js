@@ -108,4 +108,10 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         .select(1)
         .should('have.value','blog')
     })
+
+    it('mark the type of service "Feedback"', function () {
+        cy.get('input[type="radio"][value="feedback"]')
+        .check()
+        .should('be.checked')
+    })
 })
