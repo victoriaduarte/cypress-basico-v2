@@ -29,7 +29,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {  /* Test suite */
         cy.get('#open-text-area').type('test')
         cy.get('button[type="submit"]').click()
 
-        cy.get('.error > strong').should('be.visible')
+        cy.get('.error').should('be.visible')
         })
   })
   
