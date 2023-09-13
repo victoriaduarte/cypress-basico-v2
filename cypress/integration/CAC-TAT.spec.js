@@ -32,7 +32,18 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.get('.error').should('be.visible')
     })
 
-    it.only('phone field remains empty when filled with a non-numeric value', function () {
+    it('phone field remains empty when filled with a non-numeric value', function () {
         cy.get('#phone').type('test').should('have.value', '')
+    })
+
+    it.only('displays an error message when the telephone number becomes required but is not filled in before submitting the form', function () {
+        cy.get('#firstName').type('Victoria')
+        cy.get('#lastName').type('Duarte')
+        cy.get('#email').type('victoria@example.com')
+        cy.get('#phone-checkbox').click()
+        cy.get('#open-text-area').type('test')
+        cy.get('button[type="submit"]').click()
+
+        cy.get('.error').should('be.visible')
     })
 })
