@@ -90,10 +90,16 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
 
         cy.get('.success').should('be.visible')
     })
-    
+
     it('select a product (YouTube) by its text', function () {
         cy.get('#product')
         .select('YouTube')
         .should('have.value','youtube')
+    })
+
+    it('select a product (Mentoria) by its value', function () {
+        cy.get('#product')
+        .select('mentoria')
+        .should('have.value','mentoria')
     })
 })
