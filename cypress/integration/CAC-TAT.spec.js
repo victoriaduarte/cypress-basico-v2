@@ -159,4 +159,17 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
                 expect(input[0].files[0].name).to.equal('example.json')
             })
     })
+
+    it('verifies that the privacy policy opens in another tab without a click', function () {
+        cy.get('#privacy a')
+            .should('have.attr', 'target', '_blank')
+    })
+
+    it('go to the privacy policy page, remove the target and click the link', function () {
+        cy.get('#privacy a')
+            .invoke('removeAttr', 'target')
+            .click()
+
+        cy.contains('h1#title', 'CAC TAT - Política de privacidade').should('be.visible',)
+    })
 })
