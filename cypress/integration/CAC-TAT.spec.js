@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />   /* Cypress autocomplete */
 
 describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite */
+    const THREE_SECONDS_IN_MS = 3000
 
     this.beforeEach(function () {
         cy.visit('./src/index.html')  /* Relative path based on cypress.json */
@@ -13,6 +14,8 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
     it('fill out the required fields and send the form', function () {
         const longText = 'Teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste, teste'
 
+        cy.clock()
+
         cy.get('#firstName').type('Victoria')
         cy.get('#lastName').type('Duarte')
         cy.get('#email').type('victoria@example.com')
@@ -20,9 +23,14 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.contains('button', 'Enviar').click()
 
         cy.get('.success').should('be.visible')
+
+        cy.tick(THREE_SECONDS_IN_MS)
+        cy.get('.success').should('not.be.visible')
     })
 
     it('display an error message when submitting the form with an email with invalid format', function () {
+        cy.clock()
+
         cy.get('#firstName').type('Victoria')
         cy.get('#lastName').type('Duarte')
         cy.get('#email').type('victoria.example.com')
@@ -30,6 +38,9 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.contains('button', 'Enviar').click()
 
         cy.get('.error').should('be.visible')
+
+        cy.tick(THREE_SECONDS_IN_MS)
+        cy.get('.error').should('not.be.visible')
     })
 
     it('phone field remains empty when filled with a non-numeric value', function () {
@@ -37,6 +48,8 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
     })
 
     it('displays an error message when the telephone number becomes required but is not filled in before submitting the form', function () {
+        cy.clock()
+
         cy.get('#firstName').type('Victoria')
         cy.get('#lastName').type('Duarte')
         cy.get('#email').type('victoria@example.com')
@@ -45,6 +58,9 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.contains('button', 'Enviar').click()
 
         cy.get('.error').should('be.visible')
+
+        cy.tick(THREE_SECONDS_IN_MS)
+        cy.get('.error').should('not.be.visible')
     })
 
     it('fill out and clear the name, surname, email and telephone fields', function () {
@@ -80,15 +96,23 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
     })
 
     it('displays an error message when submitting the form without filling out the required fields', function () {
+        cy.clock()
         cy.contains('button', 'Enviar').click()
 
         cy.get('.error').should('be.visible')
+        
+        cy.tick(THREE_SECONDS_IN_MS)
+        cy.get('.error').should('not.be.visible')
     })
 
     it('successfully submits the form using a custom command', function () {
+        cy.clock()
         cy.fillMandatoryFieldsAndSubmit()
 
         cy.get('.success').should('be.visible')
+
+        cy.tick(THREE_SECONDS_IN_MS)
+        cy.get('.success').should('not.be.visible')
     })
 
     it('select a product (YouTube) by its text', function () {
