@@ -47,20 +47,22 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.get('#phone').type('test').should('have.value', '')
     })
 
-    it('displays an error message when the telephone number becomes required but is not filled in before submitting the form', function () {
-        cy.clock()
+    Cypress._.times(3, () => {
+        it('displays an error message when the telephone number becomes required but is not filled in before submitting the form', function () {
+            cy.clock()
 
-        cy.get('#firstName').type('Victoria')
-        cy.get('#lastName').type('Duarte')
-        cy.get('#email').type('victoria@example.com')
-        cy.get('#phone-checkbox').check()
-        cy.get('#open-text-area').type('test')
-        cy.contains('button', 'Enviar').click()
+            cy.get('#firstName').type('Victoria')
+            cy.get('#lastName').type('Duarte')
+            cy.get('#email').type('victoria@example.com')
+            cy.get('#phone-checkbox').check()
+            cy.get('#open-text-area').type('test')
+            cy.contains('button', 'Enviar').click()
 
-        cy.get('.error').should('be.visible')
+            cy.get('.error').should('be.visible')
 
-        cy.tick(THREE_SECONDS_IN_MS)
-        cy.get('.error').should('not.be.visible')
+            cy.tick(THREE_SECONDS_IN_MS)
+            cy.get('.error').should('not.be.visible')
+        })
     })
 
     it('fill out and clear the name, surname, email and telephone fields', function () {
