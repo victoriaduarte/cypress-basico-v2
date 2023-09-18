@@ -102,7 +102,7 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
         cy.contains('button', 'Enviar').click()
 
         cy.get('.error').should('be.visible')
-        
+
         cy.tick(THREE_SECONDS_IN_MS)
         cy.get('.error').should('not.be.visible')
     })
@@ -197,5 +197,30 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
             .click()
 
         cy.contains('h1#title', 'CAC TAT - Política de privacidade').should('be.visible',)
+    })
+
+    it('display and hide success and error messages using .invoke', () => {
+        cy.get('.success')
+            .should('not.be.visible')
+            .invoke('show')
+            .should('be.visible')
+            .and('contain', 'Mensagem enviada com sucesso.')
+            .invoke('hide')
+            .should('not.be.visible')
+        cy.get('.error')
+            .should('not.be.visible')
+            .invoke('show')
+            .should('be.visible')
+            .and('contain', 'Valide os campos obrigatórios!')
+            .invoke('hide')
+            .should('not.be.visible')
+    })
+
+    it('fills the text area using the invoke command', () => {
+        const longText = Cypress._.repeat('test', 20)
+
+        cy.get('#open-text-area')
+            .invoke('val', longText)
+            .should('have.value', longText)
     })
 })
