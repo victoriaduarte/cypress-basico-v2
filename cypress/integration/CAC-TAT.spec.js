@@ -233,4 +233,14 @@ describe('Central de Atendimento ao Cliente TAT', function () {  /* Test suite *
                 expect(body).to.include('CAC TAT')
             })
     })
+
+    it.only('challenge: find the hidden cat', () => {
+        cy.get('#cat')
+            .invoke('show')
+            .should('be.visible')
+        cy.get('#title')
+            .invoke('text', 'CAT TAT')
+        cy.get('#subtitle')
+            .invoke('text', 'I 💜 cats')
+    })
 })
