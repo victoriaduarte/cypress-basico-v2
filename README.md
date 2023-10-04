@@ -16,6 +16,8 @@ Sample project for the basic course of the Talking About Testing online school.
 - Understanding logs
 - Basic API testing
 
+ <img src="screenshot-test-result.png" width=70%>
+
 ## ⚙ Pre-requirements
 
 It is required to have Node.js and npm installed to run this project.
